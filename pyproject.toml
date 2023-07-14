@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "midjourney"
+version = "0.1.0"
+description = ""
+authors = ["Konstantin <k1st.volkov@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.100.0"}
+discord = "^2.3.1"
+discord-webhook = "^1.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
