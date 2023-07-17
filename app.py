@@ -19,10 +19,8 @@ CLIENT_TOKEN = "Mjg1MDgwMDM4NTUzMTU3NjMy.GiOReY.VR0aJJa-DIx87babkNrNbVA7xi4t6l52
 app = FastAPI()
 
 
-
-
 @app.post("/send-message")
-async def send_message_route(prompt: str):
+async def send_message_route(prompt: Item):
     headers = {"Authorization": f"{CLIENT_TOKEN}", "Content-Type": "application/json", "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"}
     data = {
    "type":2,
@@ -41,7 +39,7 @@ async def send_message_route(prompt: str):
             "name":"prompt",
             "description":"What is the question?",
             "required":True,
-            "value": f"{prompt}"
+            "value": f"{prompt.message}"
          }
       ]
    }
