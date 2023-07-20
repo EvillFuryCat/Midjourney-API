@@ -29,15 +29,20 @@ class BotClient(Client):
                     if attachment.url.lower().endswith(("png", "jpg", "jpeg")):
                         self.image_url = attachment.url
                         self.image_event.set()
-                        return
 
+def get_image_url():
+    bot = BotClient()
+    bot.run(BOT_TOKEN)
+    
+# Запуск бота
+if __name__ == "__main__":
+    get_image_url()
+# bot = BotClient()
 
-async def get_image_url(bot: BotClient, prompt: str):
-    await bot.wait_until_ready()
-    await bot.image_event.wait()
-    return bot.image_url
+# @bot.event
+# async def on_ready():
+#     print(f"We have logged in as {bot.user}")
 
-
-# client = BotClient()
-# client.run(BOT_TOKEN)
-
+# @bot.event
+# async def on_message(message):
+#     await bot.process_commands(message)
