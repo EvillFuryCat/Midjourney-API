@@ -24,6 +24,6 @@ RUN poetry config virtualenvs.create false
 RUN mkdir -p /app
 WORKDIR /app
 
-COPY pyproject.toml poetry.lock Bot API ./
+COPY pyproject.toml poetry.lock bot.py ./
 RUN poetry install  --no-interaction --no-ansi
-CMD [ "uvicorn", "API.main:app", "--host", "127.0.0.1", "--port", "8000" ]
+CMD [ "python3", "bot.py"]

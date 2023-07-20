@@ -1,0 +1,34 @@
+version: '1.5'
+
+services:
+  api:
+    container_name: API_requests_to_Midjourney
+    build: .
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - ~/.bash_history:/root/.bash_history
+      - .:/app
+    ports:
+      - 8000:8000
+    environment:
+      CLIENT_TOKEN: ${CLIENT_TOKEN}
+      CHANNEL_ID: ${CHANNEL_ID}
+    env_file:
+      - .env
+    command: uvicorn API.main:app --reload --host 0.0.0.0 --port 8000
+
+  # bot:
+  #   build:
+  #     context: Bot/.
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:8000
+  #   environment:
+  #     BOT_TOKEN: ${BOT_TOKEN}
+  #     API_URL_IMAGE: ${API_URL_IMAGE}
+  #   env_file:
+  #     - .env
+  #   restart: always 
+
+    
+    
