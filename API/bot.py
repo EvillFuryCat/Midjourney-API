@@ -27,16 +27,11 @@ class BotClient(Client):
                 for attachment in message.attachments:
                     image_url = attachment.url
                     if attachment.url.lower().endswith(("png", "jpg", "jpeg")):
-                        self.image_url = attachment.url
-                        self.image_event.set()
+                        image_url = attachment.url
+                    break
+        return image_url
 
-def get_image_url():
-    bot = BotClient()
-    bot.run(BOT_TOKEN)
-    
-# Запуск бота
-if __name__ == "__main__":
-    get_image_url()
+
 # bot = BotClient()
 
 # @bot.event
