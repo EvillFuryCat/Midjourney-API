@@ -13,22 +13,34 @@ services:
     environment:
       CLIENT_TOKEN: ${CLIENT_TOKEN}
       CHANNEL_ID: ${CHANNEL_ID}
+      BOT_TOKEN: ${BOT_TOKEN}
+      CELERY_BROKER_URL: ${CELERY_BROKER_URL}
+      CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND}
+    depends_on:
+      - redis
+      - worker
     env_file:
       - .env
-    command: uvicorn API.main:app --reload --host 0.0.0.0 --port 8000
+    command: uvicorn api.main:app --reload --host 0.0.0.0 --port 8000
+  worker:
+    build: .
+    command: celery -A api.tasks.celery worker --concurrency=3 --loglevel=info
+    volumes:
+      - ~/.ssh:/root/.ssh
+      - ~/.bash_history:/root/.bash_history
+      - .:/app
+    environment:
+      CLIENT_TOKEN: ${CLIENT_TOKEN}
+      CHANNEL_ID: ${CHANNEL_ID}
+      BOT_TOKEN: ${BOT_TOKEN}
+      CELERY_BROKER_URL: ${CELERY_BROKER_URL}
+      CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND}
+    depends_on:
+      - redis
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
 
-  # bot:
-  #   build:
-  #     context: Bot/.
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 3000:8000
-  #   environment:
-  #     BOT_TOKEN: ${BOT_TOKEN}
-  #     API_URL_IMAGE: ${API_URL_IMAGE}
-  #   env_file:
-  #     - .env
-  #   restart: always 
-
-    
+ 
     
