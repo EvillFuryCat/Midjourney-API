@@ -7,6 +7,7 @@ from redis import Redis
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 CHANNEL_ID = os.getenv("CHANNEL_ID")
+GUILD_ID = os.getenv("GUILD_ID")
 CLIENT_TOKEN = os.getenv("CLIENT_TOKEN")
 
 
@@ -36,7 +37,7 @@ def send_message_to_discord(self, prompt: str):
         data = {
             "type": 2,
             "application_id": "936929561302675456",
-            "guild_id": f"{CHANNEL_ID}",
+            "guild_id": f"{GUILD_ID}",
             "channel_id": f"{CHANNEL_ID}",
             "session_id": "effacc7b-e32c-4002-8f61-d4b471fe22c7",
             "data": {

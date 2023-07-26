@@ -12,6 +12,7 @@ services:
       - 8000:8000
     environment:
       CLIENT_TOKEN: ${CLIENT_TOKEN}
+      GUILD_ID: ${GUILD_ID}
       CHANNEL_ID: ${CHANNEL_ID}
       BOT_TOKEN: ${BOT_TOKEN}
       CELERY_BROKER_URL: ${CELERY_BROKER_URL}
@@ -30,6 +31,7 @@ services:
       - ~/.bash_history:/root/.bash_history
       - .:/app
     environment:
+      GUILD_ID: ${GUILD_ID}
       CLIENT_TOKEN: ${CLIENT_TOKEN}
       CHANNEL_ID: ${CHANNEL_ID}
       BOT_TOKEN: ${BOT_TOKEN}
