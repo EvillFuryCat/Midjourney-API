@@ -3,7 +3,7 @@ import asyncio
 from discord import Client, Intents, Message
 
 
-BOT_TOKEN = "MTEyODk3MTg4NjUwNDcxODM0Nw.GjdeFa.HiRVLZ-Ay_u6zI9nlQvUKdslfSl7ennSdby4Uw"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 API_URL_IMAGE = os.getenv("API_URL_IMAGE")
 
 
